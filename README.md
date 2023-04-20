@@ -5,6 +5,7 @@ Este script em Python lê dados de um arquivo CSV e cria um arquivo XML correspo
 Pré-requisitos
 Python 3.x
 Arquivo CSV contendo dados na ordem: host, name, template, group, ip, interface, inventory_mode
+
 Como usar
 Salve o arquivo CSV com os dados que deseja converter em um arquivo XML.
 Modifique o caminho do arquivo CSV no script para o caminho do seu arquivo.
