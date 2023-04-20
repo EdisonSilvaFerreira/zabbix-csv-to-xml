@@ -1,0 +1,34 @@
+import csv
+import xml.etree.ElementTree as ET
+
+# abrir arquivo CSV e ler os dados
+with open('dados_hosts.csv', 'r', newline='', encoding='utf-8') as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=';')
+    # criar elemento raiz
+    root = ET.Element('hosts')
+    # iterar por cada linha do arquivo CSV e criar elementos XML correspondentes
+    for row in reader:
+        host = ET.SubElement(root, 'host')
+        host_element = ET.SubElement(host, 'host')
+        host_element.text = row['host']
+        name = ET.SubElement(host, 'name')
+        name.text = row['name']
+        templates = ET.SubElement(host, 'templates')
+        template = ET.SubElement(templates, 'template')
+        template_name = ET.SubElement(template, 'name')
+        template_name.text = row['template']
+        groups = ET.SubElement(host, 'groups')
+        group = ET.SubElement(groups, 'group')
+        group_name = ET.SubElement(group, 'name')
+        group_name.text = row['group']
+        interfaces = ET.SubElement(host, 'interfaces')
+        interface = ET.SubElement(interfaces, 'interface')
+        ip = ET.SubElement(interface, 'ip')
+        ip.text = row['ip']
+        interface_ref = ET.SubElement(interface, 'interface_ref')
+        interface_ref.text = row['interface']
+        inventory_mode = ET.SubElement(host, 'inventory_mode')
+        inventory_mode.text = row['inventory_mode']
+    # criar arquivo XML
+    tree = ET.ElementTree(root)
+    tree.write('hosts.xml', encoding='utf-8', xml_declaration=True)
